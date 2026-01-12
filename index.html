@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Berat Kaylesiz</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0d0d0d;
+      color: white;
+    }
+
+    header {
+      background: #111;
+      padding: 18px;
+      text-align: center;
+      font-size: 22px;
+      font-weight: bold;
+      border-bottom: 1px solid #222;
+    }
+
+    .update {
+      display: none;
+      background: #222;
+      margin: 14px;
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid #2ecc71;
+    }
+
+    .update h3 {
+      margin: 0 0 6px;
+      font-size: 18px;
+    }
+
+    .update p {
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    .update a {
+      display: block;
+      margin-top: 10px;
+      padding: 12px;
+      background: #2ecc71;
+      color: black;
+      text-align: center;
+      font-weight: bold;
+      border-radius: 12px;
+      text-decoration: none;
+    }
+
+    .post {
+      background: #1a1a1a;
+      margin: 14px;
+      padding: 14px;
+      border-radius: 14px;
+    }
+
+    .post img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .post h2 {
+      margin: 10px 0 6px;
+      font-size: 18px;
+    }
+
+    .post p {
+      font-size: 14px;
+      color: #bbb;
+      line-height: 1.4;
+    }
+
+    .download {
+      display: block;
+      margin-top: 12px;
+      padding: 14px;
+      background: #2ecc71;
+      color: black;
+      text-align: center;
+      font-weight: bold;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+<header>Berat Kaylesiz</header>
+
+<!-- GÜNCELLEME ALANI -->
+<div id="updateBox" class="update">
+  <h3>Güncelleme Var</h3>
+  <p id="updateText"></p>
+  <a id="updateBtn">Güncellemeyi İndir</a>
+</div>
+
+<!-- APK BLOG POST (ÖRNEK) -->
+<div class="post">
+  <img src="images/app1.png">
+  <h2>Benim Oyunum v1.0</h2>
+  <p>
+    Android için geliştirilmiş mobil oyun.
+    Performans iyileştirmeleri ve hata düzeltmeleri içerir.
+  </p>
+  <a class="download"
+     href="https://github.com/BeratKaylesizYT/dosyapaylasim/releases/download/mc1.21.131/mc.apk">
+     APK İndir
+  </a>
+</div>
+
+<script>
+  const currentVersion = "1.0";
+  const updateUrl = "https://BeratKaylesizYT.github.io/dosyapaylasim/update.json";
+
+  fetch(updateUrl)
+    .then(res => res.json())
+    .then(data => {
+      if (data.version !== currentVersion) {
+        document.getElementById("updateBox").style.display = "block";
+        document.getElementById("updateText").innerText =
+          "Yeni sürüm: " + data.version + "\n" + data.notes;
+        document.getElementById("updateBtn").href = data.url;
+      }
+    });
+</script>
+
+</body>
+</html>
